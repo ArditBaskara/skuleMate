@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const Hero = () => {
   const router = useRouter();
@@ -34,7 +35,7 @@ const Hero = () => {
           />
         </div>
         <div className="flex-1">
-          <img
+          <Image
             src="/lading2.png"
             alt="Gambar 2"
             className="w-full h-auto rounded-lg shadow-md"
