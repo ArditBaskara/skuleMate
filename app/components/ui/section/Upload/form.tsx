@@ -162,13 +162,13 @@ const DescribeYourself = ({
             )}
 
             <div className="flex flex-col sm:flex-row gap-4 justify-between mt-6">
-              <button
+              {/* <button
                 type="submit"
                 className="bg-teal-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-teal-700"
                 disabled={loading}
               >
                 {loading ? 'Mencari...' : 'Cari Beasiswa'}
-              </button>
+              </button> */}
               <button
                 type="button"
                 onClick={() => setIsCvUpload((prev) => !prev)}
@@ -178,7 +178,6 @@ const DescribeYourself = ({
               </button>
             </div>
 
-            {/* Error Display */}
             {error && (
               <div className="mt-6 text-red-600 font-medium text-lg">
                 {error}
