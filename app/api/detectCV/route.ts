@@ -1,16 +1,45 @@
 export async function POST(req: Request) {
-  const formData = await req.formData();
+  const CV_URL = "https://b26b-34-125-77-42.ngrok-free.app/detect-cv";
+  try {
+    const formData = await req.formData();
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 seconds timeout
 
-  const response = await fetch("http://localhost:5000/detect-cv", {
-    method: "POST",
-    headers: {
-      "ngrok-skip-browser-warning": "true",
-    },
-    body: formData,
-  });
+    const response = await fetch(CV_URL, {
+      method: "POST",
+      headers: {
+        "ngrok-skip-browser-warning": "true",
+      },
+      body: formData,
+      signal: controller.signal,
+    });
 
-  const data = await response.json();
-  return new Response(JSON.stringify(data), {
-    headers: { "Content-Type": "application/json" },
-  });
+    clearTimeout(timeoutId); // Clear timeout once response is received
+
+    if (!response.ok) {
+      throw new Error(`Status ${response.status}`);
+    }
+
+    // Check if the response is JSON
+    const contentType = response.headers.get("Content-Type");
+    if (contentType && contentType.includes("application/json")) {
+      const result = await response.json();
+      console.log("Result from detect-cv:", result);
+      return new Response(JSON.stringify(result), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
+    } else {
+      throw new Error("Invalid response format");
+    }
+  } catch (err) {
+    console.error("Error in detect-cv request:", err);
+    return new Response(
+      JSON.stringify({ error: "Failed to detect CV", details: err instanceof Error ? err.message : err }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
 }
