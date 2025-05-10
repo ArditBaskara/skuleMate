@@ -9,7 +9,7 @@ const Footer = () => {
         {/* Logo */}
         <div className="flex items-center gap-3">
           <img
-            src="/skulemate.png" // Ganti dengan alamat logo Anda
+            src="/skulemate.png"
             alt="Skulmate Logo"
             width={60}
             height={60}
@@ -18,7 +18,6 @@ const Footer = () => {
           <span className="text-xl font-semibold">Skulmate</span>
         </div>
 
-        {/* Social Media Icons */}
         <div className="flex gap-4">
           <a
             href="https://twitter.com"
