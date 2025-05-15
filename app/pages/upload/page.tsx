@@ -44,7 +44,6 @@ export default function Page() {
         data = await res.json();
       }
 
-      // Wrap the data array inside an object with recommendations key
       setResult({ recommendations: data });
       console.log('Fetched result data:', data);
     } catch (error) {

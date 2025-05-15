@@ -1,5 +1,5 @@
 export async function POST(req: Request) {
-  const TEXT_URL = "https://b26b-34-125-77-42.ngrok-free.app/detect-text";
+  const TEXT_URL = "https://e234-34-90-235-33.ngrok-free.app/detect-text";
   
   try {
     const body = await req.json();
