@@ -108,7 +108,7 @@ Now, you're ready to test the app. Upload a food image and watch Nutriject break
 3. **Instantly receive tailored recommendations**
 
 📺 **For a full demonstration, watch the documentation video here**:  
-[👉 SkuleMate Demo on YouTube](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+[👉 SkuleMate Demo on YouTube](https://youtu.be/SYM3-IZIcdc)
 
 ---
 
