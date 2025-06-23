@@ -1,5 +1,6 @@
 export async function POST(req: Request) {
-  const CV_URL = "https://e234-34-90-235-33.ngrok-free.app/detect-cv";
+  // example API URL : https://f04d-35-196-204-255.ngrok-free.app/detect-text
+  const CV_URL = "(( API from google colab ))/detect-cv";
   try {
     const formData = await req.formData();
     const controller = new AbortController();
