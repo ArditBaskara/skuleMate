@@ -12,42 +12,53 @@ const Hero = () => {
   };
 
   return (
-    <section className="text-center px-4 md:px-8 lg:px-16 py-12 bg-white dark:bg-neutral-900">
-      <div className="max-w-3xl mx-auto mb-30 mt-20">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4 leading-tight">
-          Mulai Perjalanan Pendidikanmu dengan Rekomendasi Beasiswa Terbaik
-        </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-          Cari beasiswa berdasarkan jurusan, lokasi, dan kualifikasi pribadi kamu.
-        </p>
-        <button
-          onClick={handleClick}
-          className="bg-teal-500 hover:bg-teal-400 text-white py-3 px-8 rounded-full text-lg transition duration-300"
-        >
-          Cari Beasiswa
-        </button>
+    <section className="bg-neutral-950 text-white px-6 md:px-12 lg:px-24 py-20 relative overflow-hidden">
+      {/* Background Blur Effect */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-neutral-950 opacity-90 z-0"></div>
+      <div className="absolute top-[-80px] left-[60%] w-[300px] h-[300px] bg-blue-800 opacity-10 blur-[100px] rounded-full z-0" />
+
+      <div className="relative z-10 flex flex-col-reverse md:flex-row items-center justify-between gap-12 max-w-7xl mx-auto">
+        {/* TEXT */}
+        <div className="md:w-1/2 text-center md:text-left">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white">
+            Discover Scholarships Smarter with SkuleMate
+          </h1>
+          <p className="text-lg text-gray-400 mb-8">
+             Just upload your CV or write a short bio. Let the AI find your best-fit scholarships with fast, personalized, and stress-free.
+          </p>
+          <button
+            onClick={handleClick}
+            className="bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 px-8 rounded-full transition duration-300 shadow-lg"
+          >
+            Find My Scholarship
+          </button>
+        </div>
+
+        {/* SINGLE IMAGE WITH FLOATING EFFECT */}
+        <div className="md:w-1/2 flex justify-center">
+          <div className="relative w-[400px] h-[300px] md:w-[500px] md:h-[400px] animate-float">
+            <Image
+              src="/lading1.png"
+              alt="Hero Illustration"
+              fill
+              className="rounded-3xl shadow-xl object-cover rotate-[3deg] hover:rotate-0 transition duration-500 ease-in-out"
+            />
+          </div>
+        </div>
       </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-        <div className="w-full md:w-1/2">
-          <Image
-            src="/lading1.png"
-            alt="Ilustrasi pencarian beasiswa"
-            width={600}
-            height={400}
-            className="rounded-lg shadow-lg w-full h-auto object-cover"
-          />
-        </div>
-        <div className="w-full md:w-1/2">
-          <Image
-            src="/lading2.png"
-            alt="Ilustrasi pendidikan global"
-            width={600}
-            height={400}
-            className="rounded-lg shadow-lg w-full h-auto object-cover"
-          />
-        </div>
-      </div>
+      {/* Floating animation style */}
+      <style jsx>{`
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+          100% { transform: translateY(0px); }
+        }
+      `}</style>
     </section>
   );
 };

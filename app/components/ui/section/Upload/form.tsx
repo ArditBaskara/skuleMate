@@ -30,6 +30,7 @@ const DescribeYourself = ({
 }: DescribeYourselfProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  let trigger = 0;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -48,22 +49,34 @@ const DescribeYourself = ({
     setError(null);
 
     try {
+      trigger = 1;
       let data;
+      const apiLink = sessionStorage.getItem("apiLink");
+
       if (isCvUpload && formData.cv) {
         const form = new FormData();
         form.append('file', formData.cv);
+
         const res = await fetch('/api/detectCV', {
           method: 'POST',
+          headers: {
+            'x-api-link': apiLink || '',
+          },
           body: form,
         });
+        
         if (!res.ok) throw new Error('CV detection failed');
         data = await res.json();
-      } else if (!isCvUpload && formData.description) {
+      } 
+      else if (!isCvUpload && formData.description && trigger == 1) {
         const res = await fetch('/api/detectText', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'x-api-link': apiLink || '',
+          },
           body: JSON.stringify({ text_desc: formData.description }),
         });
+        
         if (!res.ok) throw new Error('Text detection failed');
         data = await res.json();
       } else {
@@ -83,8 +96,9 @@ const DescribeYourself = ({
     }
   };
 
+
   return (
-    <section className="w-full max-w-4xl mx-auto bg-white dark:bg-neutral-900 rounded-2xl shadow-lg p-6 sm:p-10 space-y-8 mt-10 mb-10">
+    <section className="w-full max-w-4xl mx-auto bg-white dark:bg-neutral-900 rounded-2xl shadow-lg p-6 sm:p-10 space-y-8 mt-10 mb-10 z-10">
       <header className="text-center">
         <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-[color:var(--foreground)]">
           Describe Yourself
@@ -180,13 +194,13 @@ const DescribeYourself = ({
         </form>
       </div>
 
-      {result?.recommendations?.length > 0 && (
+      {result?.length > 0 && (
         <div className="border-t border-gray-300 dark:border-neutral-700 pt-6 mt-6">
           <h2 className="text-xl font-semibold mb-4 text-teal-600 dark:text-teal-400">
             Scholarship Recommendations:
           </h2>
           <ul className="space-y-4">
-            {result.recommendations.map(
+            {result.map(
               (
                 scholarship: { title: string; desc: string; link: string },
                 index: number

@@ -20,49 +20,9 @@ export default function Page() {
   const [isCvUpload, setIsCvUpload] = useState(false);
   const [result, setResult] = useState<any>(null);
 
-  const fetchData = async () => {
-    if (!formData.name && !formData.description) return;
-
-    try {
-      let data;
-      if (isCvUpload && formData.cv) {
-        const form = new FormData();
-        form.append('file', formData.cv);
-        const res = await fetch('/api/detectCV', {
-          method: 'POST',
-          body: form,
-        });
-        if (!res.ok) throw new Error('CV detection failed');
-        data = await res.json();
-      } else if (!isCvUpload && formData.description) {
-        const res = await fetch('/api/detectText', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text_desc: formData.description }),
-        });
-        if (!res.ok) throw new Error('Text detection failed');
-        data = await res.json();
-      }
-
-      setResult({ recommendations: data });
-      console.log('Fetched result data:', data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [formData, isCvUpload]);
-
-  useEffect(() => {
-    if (result) {
-      console.log('Result updated in Parent:', result);
-    }
-  }, [result]);
-
   return (
-    <div>
+    <div className='min-h-screen pt-16 pb-6 bg-neutral-950 px-6 sm:px-10 text-gray-200 relative'>
+      <div className="absolute top-10 right-310 w-81 h-81 bg-blue-800/20 blur-[120px] rounded-full z-0" />
       <DescribeYourself
         formData={formData}
         isCvUpload={isCvUpload}
