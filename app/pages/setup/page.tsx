@@ -50,7 +50,7 @@ export default function SettingsPage() {
             <li>
               Open the&nbsp;
               <a
-                href="https://colab.research.google.com/drive/1rKuB3zvjuqfuZ3PgZDAEyMLi7XRvK4tk?usp=sharing#scrollTo=RddER8iVL4jn"
+                href="https://colab.research.google.com/drive/1ekhncbLWpavb7338ltb2KOqeu4QILDmE?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-400 underline"

@@ -4,7 +4,7 @@
 
 > 🧠 Just upload your CV or write a short bio. Let the AI find your best-fit scholarships.
 
-<img src="public/img_1.png" alt="Nutriject Homepage" width="100%"/>
+<img src="public/img_1.png" alt="SkuleMate Homepage" width="100%"/>
 
 ---
 
@@ -26,6 +26,71 @@ The core matching engine uses **Sentence-BERT (SBERT)** fine-tuned on a **custom
 
 - 📚 Custom dataset from large-scale scholarship data mining
 - 🔍 Embedding-based similarity matching
+
+---
+
+## 🔧 skuleMate Web App - Getting Started (User-Friendly)
+
+Welcome to skuleMate! Follow the steps below to get started and set up your API connection.
+
+### 1. **Visit the Website**
+
+- Go to the skuleMate Web App at [https://skule-mate.vercel.app/](https://skule-mate.vercel.app/).
+
+### 2. **Go to the Settings Page**
+
+- Once you're on the homepage, click on the **Settings** link in the navigation bar or directly navigate to the settings page.
+
+### 3. **Create an Account on Ngrok**
+
+- Go to [Ngrok's website](https://ngrok.com/) and create an account.
+- Once logged in, copy your **NGROK Auth Token**.  
+  **(See example image below)**
+
+<img src="public/Tutor1.png" alt="skuleMate Output Example" width="100%"/>
+
+### 4. **Open the AI Server on Colab**
+
+- Open the AI server on Google Colab by clicking the link below:  
+  [Colab Server Link](https://colab.research.google.com/drive/1ekhncbLWpavb7338ltb2KOqeu4QILDmE?usp=sharing)
+
+### 5. **Paste Your Ngrok Token**
+
+- In the Colab notebook, find the input field for Ngrok Token.
+- Paste your **Ngrok Auth Token** into this input field.
+
+### 6. **Connect to Colab Runtime**
+
+- You don't need a GPU, just connect to the Colab runtime by clicking the **Connect** button in the top-right corner.
+
+### 7. **Run All Cells**
+
+- Press `Ctrl + F9` or go to **Runtime > Run all** to execute all cells in the Colab notebook.  
+  **(See example image below)**
+
+<img src="public/Tutor2.png" alt="skuleMate Output Example" width="100%"/>
+
+### 8. **Copy the Generated API Link**
+
+- Wait for the API link to appear. Once it does, copy the generated link.  
+  **(See example image below)**
+
+<img src="public/Tutor3.png" alt="skuleMate Output Example" width="100%"/>
+
+### 9. **Paste the API Link in Settings**
+
+- Return to the skuleMate settings page.
+- Paste the copied **API link** into the settings input field and click **Save API**.
+
+### 10. **You're Ready to Start!**
+
+- After saving the API link, you’re ready to start using skuleMate and enjoy the features! 🎉
+
+---
+
+### Need Help?
+
+If you encounter any issues, feel free to reach out to our support team at hauzantsaaqif28@gmail.com.
 
 ---
 
@@ -85,11 +150,11 @@ Edit the following files:
 
    ```
 
-Now, you're ready to test the app. Upload a food image and watch Nutriject break down the nutrition info automatically! 🍱
+Now, you're ready to test the app 🍱
 
 ## Example Output
 
-<img src="public/img_2.png" alt="Nutriject Output Example" width="100%"/>
+<img src="public/img_2.png" alt="SkuleMate Output Example" width="100%"/>
 
 ## 🧰 Tech Stack
 

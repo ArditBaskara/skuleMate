@@ -16,8 +16,7 @@ export async function POST(req: Request) {
           signal: controller.signal,
         });
 
-        clearTimeout(timeoutId); // Clear timeout once response is received
-
+        clearTimeout(timeoutId);
         if (!response.ok) {
           throw new Error(`Status ${response.status}`);
         }

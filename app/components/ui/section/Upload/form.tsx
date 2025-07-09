@@ -53,6 +53,13 @@ const DescribeYourself = ({
       let data;
       const apiLink = sessionStorage.getItem("apiLink");
 
+      if (!apiLink) {
+        alert("API link belum disetting. Silakan pergi ke halaman setting untuk menyetting.");
+
+        window.location.href = "/pages/setup";
+        return;
+      }
+
       if (isCvUpload && formData.cv) {
         const form = new FormData();
         form.append('file', formData.cv);
