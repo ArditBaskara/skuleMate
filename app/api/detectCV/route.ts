@@ -3,7 +3,7 @@ export async function POST(req: Request) {
   try {
     const formData = await req.formData();
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 seconds timeout
+    const timeoutId = setTimeout(() => controller.abort(), 5000); 
 
     const response = await fetch(CV_URL, {
       method: "POST",
@@ -14,7 +14,7 @@ export async function POST(req: Request) {
       signal: controller.signal,
     });
 
-    clearTimeout(timeoutId); // Clear timeout once response is received
+    clearTimeout(timeoutId); +
 
     if (!response.ok) {
       throw new Error(`Status ${response.status}`);
