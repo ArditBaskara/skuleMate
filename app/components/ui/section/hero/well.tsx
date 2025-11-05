@@ -2,86 +2,94 @@ import Image from 'next/image';
 
 const WellbeingSection = () => {
   return (
-    <section className="py-16 bg-gray-100">
-      <div className="container mx-auto px-6 md:px-12">
+    <section className="py-20 bg-gray-100 dark:bg-neutral-900">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Top Section */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
             Wellbeing starts with welldoing
           </h2>
-          <p className="text-lg text-gray-600 mb-6">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto">
             Setiap langkah menuju kesuksesan dimulai dengan peluang yang tepat.
-            Kami percaya bahwa setiap individu memiliki potensi yang luar biasa,
-            dan kami berkomitmen untuk menyediakan beasiswa yang sesuai dengan
-            kebutuhan dan kemampuan pribadi Anda.
+            Kami percaya bahwa setiap individu memiliki potensi luar biasa,
+            dan kami berkomitmen menyediakan beasiswa yang sesuai dengan
+            kebutuhan serta kemampuan pribadi Anda.
           </p>
           <a
             href="#search-scholarship"
-            className="bg-blue-500 text-white py-2 px-4 rounded-full text-lg"
+            className="inline-block bg-blue-600 hover:bg-blue-500 text-white py-3 px-6 rounded-full text-lg transition duration-300"
           >
             Cari Beasiswa
           </a>
         </div>
 
         {/* Image Section */}
-        <div className="mb-12">
+        <div className="mb-16">
           <Image
             src="/bawah.jpg"
-            alt="Students Group"
+            alt="Kelompok Mahasiswa"
             width={1200}
             height={600}
-            className="w-full h-96 object-cover rounded-lg"
+            className="w-full h-96 object-cover rounded-xl shadow-lg"
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-          <div className="bg-pink-100 p-8 rounded-lg shadow-lg">
-            <div className="mb-4 ">
+        {/* Feature Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 text-center">
+          {/* Card 1 */}
+          <div className="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300">
+            <div className="mb-4 flex justify-center">
               <Image
                 src="/personalisasi.png"
-                alt="Personalization Icon"
+                alt="Personalisasi Icon"
                 width={50}
                 height={50}
               />
             </div>
-            <h3 className="text-xl font-semibold text-gray-800">
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
               Personalisasi
             </h3>
-            <p className="text-gray-600 mt-2">
-              Sistem kami menyediakan rekomendasi yang sangat disesuaikan dengan
+            <p className="text-gray-600 dark:text-gray-300 mt-2">
+              Sistem kami menyediakan rekomendasi yang disesuaikan dengan
               profil dan preferensi Anda.
             </p>
           </div>
 
-          <div className="bg-pink-100 p-8 rounded-lg shadow-lg">
-            <div className="mb-4">
+          {/* Card 2 */}
+          <div className="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300">
+            <div className="mb-4 flex justify-center">
               <Image
                 src="/teknologi.png"
-                alt="Technology Icon"
+                alt="Teknologi Icon"
                 width={50}
                 height={50}
               />
             </div>
-            <h3 className="text-xl font-semibold text-gray-800">Teknologi</h3>
-            <p className="text-gray-600 mt-2">
-              Dengan teknologi canggih, kami bisa memberikan rekomendasi yang
-              relevan dan akurat berdasarkan kebutuhan Anda.
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+              Teknologi
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mt-2">
+              Dengan teknologi canggih, kami memberikan rekomendasi yang akurat
+              dan relevan berdasarkan kebutuhan Anda.
             </p>
           </div>
 
-          <div className="bg-pink-100 p-8 rounded-lg shadow-lg">
-            <div className="mb-4">
+          {/* Card 3 */}
+          <div className="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300">
+            <div className="mb-4 flex justify-center">
               <Image
-                src="/relevan.png" // Ganti dengan alamat ikon Anda
-                alt="Relevance Icon"
+                src="/relevan.png"
+                alt="Relevansi Icon"
                 width={50}
                 height={50}
               />
             </div>
-            <h3 className="text-xl font-semibold text-gray-800">Relevansi</h3>
-            <p className="text-gray-600 mt-2">
-              Kami memastikan setiap beasiswa yang kami tawarkan relevan dengan
-              tujuan pendidikan dan perkembangan karir Anda.
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+              Relevansi
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mt-2">
+              Kami pastikan beasiswa yang kami tawarkan sesuai dengan tujuan
+              pendidikan dan perkembangan karir Anda.
             </p>
           </div>
         </div>

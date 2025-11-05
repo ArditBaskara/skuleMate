@@ -2,77 +2,74 @@ import Image from 'next/image';
 
 const ScholarshipSection = () => {
   return (
-    <section className="py-16 bg-gray-100">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <section className="py-20 bg-gray-100 dark:bg-neutral-900">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        {/* Section 1 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-6 leading-tight">
               Mencapai Impian Pendidikanmu
             </h2>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
               Kami membantu kamu menemukan beasiswa yang sesuai dengan jurusan,
               lokasi, dan kualifikasi yang kamu miliki. Mulai perjalanan
               pendidikanmu dengan beasiswa yang tepat.
             </p>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               Jangan biarkan biaya pendidikan menghalangi impianmu. Temukan
               beasiswa yang bisa membantumu meraih tujuan pendidikanmu.
             </p>
           </div>
 
-          <div>
+          <div className="w-full">
             <Image
               src="/222.png"
-              alt="Pendidikan"
-              width={500}
-              height={500}
-              className="w-full rounded-lg"
+              alt="Ilustrasi mahasiswa mengejar beasiswa"
+              width={600}
+              height={400}
+              className="rounded-xl shadow-lg w-full h-auto object-cover"
             />
           </div>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        {/* Section 2 */}
+        <div className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-6 leading-tight">
               Raih Beasiswa Terbaik Sesuai dengan Kualifikasi Kamu
             </h2>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
               Skulamate menggunakan teknologi canggih untuk menyaring beasiswa
               berdasarkan jurusan, lokasi, dan tingkat pendidikan. Dapatkan
               rekomendasi yang disesuaikan dengan kebutuhan dan keinginan kamu.
             </p>
             <div className="space-y-6">
-              <div className="flex items-start">
-                <span className="text-xl text-gray-800 font-semibold mr-4">
-                  Personalisi Tinggi:
-                </span>
-                <p className="text-lg text-gray-600">
-                  Pengguna mendapatkan rekomendasi yang sangat disesuaikan
-                  dengan profil mereka, seperti jurusan yang diminati, lokasi
-                  yang diinginkan, dan kualifikasi akademik atau prestasi
-                  lainnya.
+              <div className="flex gap-4 items-start">
+                <div className="text-xl font-semibold text-gray-800 dark:text-white w-40 shrink-0">
+                  Personalisasi Tinggi:
+                </div>
+                <p className="text-lg text-gray-600 dark:text-gray-300">
+                  Rekomendasi disesuaikan dengan profil kamu, mulai dari jurusan, lokasi yang diinginkan, hingga prestasi akademik.
                 </p>
               </div>
-              <div className="flex items-start">
-                <span className="text-xl text-gray-800 font-semibold mr-4">
+              <div className="flex gap-4 items-start">
+                <div className="text-xl font-semibold text-gray-800 dark:text-white w-40 shrink-0">
                   Sistem Cerdas:
-                </span>
-                <p className="text-lg text-gray-600">
-                  Dengan menggunakan teknologi NLP, aplikasi bisa memahami
-                  konteks dan nuansa dari pencarian, memberikan hasil yang lebih
-                  relevan dan akurat.
+                </div>
+                <p className="text-lg text-gray-600 dark:text-gray-300">
+                  Teknologi NLP kami memungkinkan pemahaman konteks yang lebih baik sehingga hasil pencarian lebih akurat dan relevan.
                 </p>
               </div>
             </div>
           </div>
 
-          <div>
+          <div className="w-full">
             <Image
               src="/what.png"
-              alt="Beasiswa"
-              width={500}
-              height={500}
-              className="w-full rounded-lg"
+              alt="Ilustrasi rekomendasi beasiswa"
+              width={600}
+              height={400}
+              className="rounded-xl shadow-lg w-full h-auto object-cover"
             />
           </div>
         </div>

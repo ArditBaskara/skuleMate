@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 import Image from 'next/image';
 
@@ -29,6 +30,7 @@ const DescribeYourself = ({
 }: DescribeYourselfProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  let trigger = 0;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -47,37 +49,53 @@ const DescribeYourself = ({
     setError(null);
 
     try {
+      trigger = 1;
       let data;
-      if (isCvUpload && formData.cv) {
-        const form = new FormData();
-        form.append('file', formData.cv);
-        const res = await fetch('/api/detectCV', {
-          method: 'POST',
-          body: form,
-        });
-        if (!res.ok) throw new Error('CV detection failed');
-        data = await res.json();
-      } else if (!isCvUpload && formData.description) {
-        const res = await fetch('/api/detectText', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text_desc: formData.description }),
-        });
-        if (!res.ok) throw new Error('Text detection failed');
-        data = await res.json();
-      } else {
-        alert('Please provide either a CV or a description');
+      const apiLink = sessionStorage.getItem("apiLink");
+
+      if (!apiLink) {
+        alert("API link belum disetting. Silakan pergi ke halaman setting untuk menyetting.");
+
+        window.location.href = "/pages/setup";
         return;
       }
 
-      // Simpan hasil ke state apiResult
-      if (setResult) {
-        setResult(data);
+      if (isCvUpload && formData.cv) {
+        const form = new FormData();
+        form.append('file', formData.cv);
+
+        const res = await fetch('/api/detectCV', {
+          method: 'POST',
+          headers: {
+            'x-api-link': apiLink || '',
+          },
+          body: form,
+        });
+        
+        if (!res.ok) throw new Error('CV detection failed');
+        data = await res.json();
+      } 
+      else if (!isCvUpload && formData.description && trigger == 1) {
+        const res = await fetch('/api/detectText', {
+          method: 'POST',
+          headers: {
+            'x-api-link': apiLink || '',
+          },
+          body: JSON.stringify({ text_desc: formData.description }),
+        });
+        
+        if (!res.ok) throw new Error('Text detection failed');
+        data = await res.json();
+      } else {
+        alert('Please fill in your description or upload your CV');
+        return;
       }
+
+      setResult?.(data);
     } catch (error) {
       console.error(error);
       setError(
-        'Error: ' +
+        'An error occurred: ' +
           (error instanceof Error ? error.message : 'Failed to send data.')
       );
     } finally {
@@ -85,144 +103,140 @@ const DescribeYourself = ({
     }
   };
 
+
   return (
-    <div className="container mx-auto p-6 max-w-4xl">
-      <h1 className="text-4xl font-bold text-center mb-4">
-        Deskripsikan Diri Anda
-      </h1>
-      <p className="text-center text-lg mb-8">
-        Cari beasiswa berdasarkan kualifikasi pribadi kamu.
-      </p>
-      <div className="bg-white p-8 rounded-lg shadow-xl">
-        <div className="flex flex-col md:flex-row gap-8 items-center">
-          <Image
-            src="/input.png"
-            alt="Ilustrasi"
-            width={300}
-            height={300}
-            className="object-contain"
-            priority
-          />
-          <form onSubmit={handleSubmit} className="w-full">
-            <div className="mb-4">
-              <label
-                htmlFor="name"
-                className="block text-sm font-semibold text-gray-700"
-              >
-                Nama Lengkap
+    <section className="w-full max-w-4xl mx-auto bg-white dark:bg-neutral-900 rounded-2xl shadow-lg p-6 sm:p-10 space-y-8 mt-10 mb-10 z-10">
+      <header className="text-center">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-[color:var(--foreground)]">
+          Describe Yourself
+        </h1>
+        <p className="text-[color:var(--foreground)/70] text-sm sm:text-base">
+          Get scholarship recommendations based on your story and experience.
+        </p>
+      </header>
+
+      <div className="flex flex-col md:flex-row gap-8">
+        <Image
+          src="/input.png"
+          alt="Illustration"
+          width={320}
+          height={320}
+          className="rounded-lg object-contain"
+          priority
+        />
+
+        <form onSubmit={handleSubmit} className="flex-1 space-y-5">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium mb-1">
+              Full Name
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="e.g., Yanto Yanti"
+              className="w-full rounded-lg border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 px-4 py-3 text-sm text-[color:var(--foreground)] focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {isCvUpload ? (
+            <div>
+              <label htmlFor="cv" className="block text-sm font-medium mb-1">
+                Upload Your CV
               </label>
               <input
-                type="text"
-                id="name"
-                name="name"
-                className="w-full px-4 py-3 mt-2 border rounded-lg"
-                value={formData.name}
-                onChange={handleChange}
+                id="cv"
+                name="cv"
+                type="file"
                 required
+                accept=".pdf,.doc,.docx"
+                onChange={handleFileChange}
+                className="w-full rounded-lg border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 px-4 py-3 text-sm"
               />
             </div>
-
-            {isCvUpload ? (
-              <div className="mb-4">
-                <label
-                  htmlFor="cv"
-                  className="block text-sm font-semibold text-gray-700"
-                >
-                  Upload CV
-                </label>
-                <input
-                  type="file"
-                  id="cv"
-                  name="cv"
-                  accept=".pdf,.doc,.docx"
-                  className="w-full px-4 py-3 mt-2 border rounded-lg"
-                  onChange={handleFileChange}
-                  required
-                />
-              </div>
-            ) : (
-              <div className="mb-4">
-                <label
-                  htmlFor="description"
-                  className="block text-sm font-semibold text-gray-700"
-                >
-                  Deskripsikan Diri Anda
-                </label>
-                <textarea
-                  id="description"
-                  name="description"
-                  className="w-full px-4 py-3 mt-2 border rounded-lg"
-                  rows={4}
-                  value={formData.description}
-                  onChange={handleChange}
-                  placeholder="Ceritakan pengalaman, pendidikan, dan minat Anda..."
-                  required
-                />
-              </div>
-            )}
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-between mt-6">
-              {/* <button
-                type="submit"
-                className="bg-teal-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-teal-700"
-                disabled={loading}
+          ) : (
+            <div>
+              <label
+                htmlFor="description"
+                className="block text-sm font-medium mb-1"
               >
-                {loading ? 'Mencari...' : 'Cari Beasiswa'}
-              </button> */}
-              <button
-                type="button"
-                onClick={() => setIsCvUpload((prev) => !prev)}
-                className="bg-gray-500 text-white py-3 px-6 rounded-lg shadow-md hover:bg-gray-600"
-              >
-                {isCvUpload ? 'Isi Deskripsi Diri' : 'Upload CV'}
-              </button>
+                Describe Yourself
+              </label>
+              <textarea
+                id="description"
+                name="description"
+                rows={5}
+                required
+                value={formData.description}
+                onChange={handleChange}
+                placeholder="Example: I graduated with a bachelor's in Computer Science, passionate about AI and social research..."
+                className="w-full rounded-lg border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 px-4 py-3 text-sm resize-none text-[color:var(--foreground)] focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
             </div>
+          )}
 
-            {error && (
-              <div className="mt-6 text-red-600 font-medium text-lg">
-                {error}
-              </div>
-            )}
-          </form>
-        </div>
+          <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-3 px-6 rounded-lg transition shadow-md disabled:opacity-60"
+            >
+              {loading ? 'Processing...' : 'Find Scholarships'}
+            </button>
+            <button
+              type="button"
+              onClick={() => setIsCvUpload((prev) => !prev)}
+              className="bg-gray-500 hover:bg-gray-600 text-white text-sm py-3 px-6 rounded-lg transition shadow-md"
+            >
+              {isCvUpload ? 'Use Description Instead' : 'Upload CV'}
+            </button>
+          </div>
 
-        {/* Result Display */}
-        {result &&
-        result.recommendations &&
-        result.recommendations.length > 0 ? (
-          <div className="mt-10">
-            <h2 className="text-2xl font-semibold mb-4 text-teal-700">
-              Beasiswa yang Cocok
-            </h2>
-            <ul className="space-y-4">
-              {result.recommendations.map((scholarship: any, index: number) => (
+          {error && (
+            <p className="text-red-600 text-sm mt-2 font-medium">{error}</p>
+          )}
+        </form>
+      </div>
+
+      {result?.length > 0 && (
+        <div className="border-t border-gray-300 dark:border-neutral-700 pt-6 mt-6">
+          <h2 className="text-xl font-semibold mb-4 text-teal-600 dark:text-teal-400">
+            Scholarship Recommendations:
+          </h2>
+          <ul className="space-y-4">
+            {result.map(
+              (
+                scholarship: { title: string; desc: string; link: string },
+                index: number
+              ) => (
                 <li
                   key={index}
-                  className="border p-4 rounded-lg shadow-sm bg-gray-50"
+                  className="bg-gray-50 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 p-4 rounded-lg shadow-sm"
                 >
-                  <h3 className="text-lg font-bold text-gray-800">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
                     {scholarship.title}
                   </h3>
-                  <p className="text-sm text-gray-700">{scholarship.desc}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                    {scholarship.desc}
+                  </p>
                   <a
                     href={scholarship.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline text-sm"
+                    className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium"
                   >
-                    {scholarship.title} - Info Beasiswa
+                    View Details
                   </a>
                 </li>
-              ))}
-            </ul>
-          </div>
-        ) : (
-          <p className="mt-10 text-lg text-gray-500">
-            Tidak ada beasiswa yang ditemukan.
-          </p>
-        )}
-      </div>
-    </div>
+              )
+            )}
+          </ul>
+        </div>
+      )}
+    </section>
   );
 };
 
