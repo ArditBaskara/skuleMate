@@ -4,6 +4,7 @@ import What from '../components/ui/section/hero/what';
 import Quotes from '../components/ui/section/hero/quotes';
 import ScholarshipListSection from '../components/ui/section/hero/scholarship';
 import Features from '../components/ui/section/hero/features';
+import Step from '../components/ui/section/hero/step';
 import WellbeingSection from '../components/ui/section/hero/well';
 import Head from 'next/head';
 
@@ -18,8 +19,15 @@ const LandingPage = () => {
         <meta property="og:image" content="https://example.com/image.png" />
       </Head>
       <Hero />
-      <Quotes />
-      <Features />
+      <div id="about">
+        <Quotes />
+      </div>
+      <div id="how-it-works">
+        <Step />
+      </div>
+      <div id="features">
+        <Features />
+      </div>
     </div>
   );
 };

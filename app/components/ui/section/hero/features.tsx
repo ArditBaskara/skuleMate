@@ -1,58 +1,68 @@
 'use client';
-import Image from 'next/image';
+import { Bot, FileUp, Sparkles, Target } from "lucide-react";
+import { motion } from 'framer-motion';
 
 const Features = () => {
   const features = [
-  {
-    title: 'AI-Powered Matching',
-    description:
-      'Automatically matches your profile with scholarship descriptions using advanced sentence embedding and semantic similarity.',
-    image: '/ai.jpg',
-    alt: 'AI Matching',
-  },
-  {
-    title: 'CV or Text Input',
-    description:
-      'Upload your resume or simply describe yourself, our system will personalize the recommendations based on your academic journey.',
-    image: '/cv.jpg',
-    alt: 'CV Input',
-  },
-  {
-    title: 'Massive Scholarship Data',
-    description:
-      'Our scraper technology continuously gathers and updates thousands of verified scholarships from global sources, so you don’t have to.',
-    image: '/data.jpg',
-    alt: 'Scraping Tech',
-  },
-];
+    {
+      icon: Bot,
+      title: "AI-Powered Matching",
+      description: "Our custom-trained models use SBERT for semantic similarity to find scholarships that truly match your profile.",
+      gradient: "from-blue-500 to-cyan-500",
+    },
+    {
+      icon: FileUp,
+      title: "CV or Text Input",
+      description: "Upload your resume or simply write about yourself. Our system understands both formats perfectly.",
+      gradient: "from-violet-500 to-purple-500",
+    },
+    {
+      icon: Sparkles,
+      title: "Smart Retrieval",
+      description: "Advanced NLP techniques ensure you never miss relevant opportunities. No manual keyword matching needed.",
+      gradient: "from-amber-500 to-orange-500",
+    },
+    {
+      icon: Target,
+      title: "Personalized Results",
+      description: "Get scholarships ranked by relevance score, saving you hours of research and increasing your chances.",
+      gradient: "from-emerald-500 to-teal-500",
+    },
+  ];
 
   return (
-    <section id='features' className="bg-gradient-to-b from-neutral-900 via-neutral-950 to-neutral-950 text-white py-25 px-6 md:px-20">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-14 text-blue-400">
-          Smarter Features for Smarter Scholarship Search
-        </h2>
+    <section className="py-20 lg:py-32 bg-gradient-to-r from-gray-50 via-indigo-100 to-blue-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-up">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gray-800">
+            Why Choose <span className="bg-gradient-to-r from-cyan-950 via-blue-600 to-blue-600 bg-clip-text text-transparent">SkuleMate?</span>
+          </h2>
+          <p className="text-lg text-gray-700">
+            Powered by cutting-edge AI technology to make scholarship hunting effortless
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {/* Feature Card */}
-          {features.map((feature, idx) => (
-            <div
-              key={idx}
-              className="bg-neutral-900 rounded-xl overflow-hidden shadow-md border border-neutral-800 transform transition duration-300 hover:-translate-y-2"
-            >
-              <div className="w-full h-48 relative">
-                <Image
-                  src={feature.image}
-                  alt={feature.alt}
-                  fill
-                  className="object-cover"
-                />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              className="group relative bg-white p-6 rounded-2xl border border-gray-300 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}>
+              <div className="mb-4">
+                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${feature.gradient} shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                  <feature.icon className="w-6 h-6 text-white" />
+                </div>
               </div>
-              <div className="p-6 text-center">
-                <h3 className="text-xl font-semibold text-blue-300 mb-2">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </div>
-            </div>
+
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">
+                {feature.title}
+              </h3>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                {feature.description}
+              </p>
+            </motion.div>
           ))}
         </div>
       </div>

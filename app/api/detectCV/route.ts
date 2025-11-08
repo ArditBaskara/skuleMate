@@ -2,16 +2,10 @@ export async function POST(req: Request) {
   const storedApi = req.headers.get('x-api-link');
 
   try {
-<<<<<<< HEAD
-    const formData = await req.formData();
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000); 
-=======
       if (storedApi) {
         const formData = await req.formData();
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 seconds timeout
->>>>>>> 4b39b2be2920dd1b970ed064c1d6dfd95bdb7218
 
         const response = await fetch(`${storedApi}/detect-cv`, {
           method: "POST",
@@ -22,14 +16,10 @@ export async function POST(req: Request) {
           signal: controller.signal,
         });
 
-<<<<<<< HEAD
-    clearTimeout(timeoutId); +
-=======
         clearTimeout(timeoutId);
         if (!response.ok) {
           throw new Error(`Status ${response.status}`);
         }
->>>>>>> 4b39b2be2920dd1b970ed064c1d6dfd95bdb7218
 
         // Check if the response is JSON
         const contentType = response.headers.get("Content-Type");

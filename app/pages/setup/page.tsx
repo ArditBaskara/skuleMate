@@ -21,25 +21,25 @@ export default function SettingsPage() {
   };
 
   return (
-    <section className="min-h-screen pt-16 pb-6 bg-neutral-950 px-6 sm:px-10 text-gray-200 relative">
+    <section className="min-h-screen pt-16 pb-6 bg-gradient-to-r from-gray-50 via-indigo-100 to-blue-50 px-6 sm:px-10 text-gray-800 relative">
       {/* radial background */}
-      <div className="absolute top-0 right-0 w-72 h-72 bg-blue-800/20 blur-[100px] rounded-full z-0" />
+      <div className="absolute top-0 right-0 w-72 h-72 bg-blue-200/30 blur-[100px] rounded-full z-0" />
 
       <div className="relative z-10 max-w-5xl mx-auto space-y-16">
         {/* Instruction Card */}
-        <div className="rounded-2xl bg-neutral-900/80 backdrop-blur border border-neutral-800 shadow-xl">
-          <div className="px-6 sm:px-10 py-8 border-b border-neutral-800 text-center">
-            <h1 className="text-3xl font-bold text-blue-400">How to Connect the API</h1>
+        <div className="rounded-2xl bg-white backdrop-blur border border-gray-300 shadow-lg">
+          <div className="px-6 sm:px-10 py-8 border-b border-gray-300 text-center">
+            <h1 className="text-3xl font-bold text-blue-600">How to Connect the API</h1>
           </div>
 
-          <ol className="list-decimal px-6 sm:px-14 py-10 space-y-8 text-sm sm:text-base text-gray-300 leading-relaxed">
+          <ol className="list-decimal px-6 sm:px-14 py-10 space-y-8 text-sm sm:text-base text-gray-700 leading-relaxed">
             <li>
               Create an account at&nbsp;
               <a
                 href="https://ngrok.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 underline"
+                className="text-blue-600 underline"
               >
                 ngrok.com
               </a> and copy your Auth Token.
@@ -53,7 +53,7 @@ export default function SettingsPage() {
                 href="https://colab.research.google.com/drive/1ekhncbLWpavb7338ltb2KOqeu4QILDmE?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 underline"
+                className="text-blue-600 underline"
               >
                 Colab server
               </a> and run all cells after pasting your token.
@@ -73,14 +73,14 @@ export default function SettingsPage() {
         </div>
 
         {/* Settings Card */}
-        <div className="rounded-2xl bg-neutral-900/80 backdrop-blur border border-neutral-800 shadow-xl px-6 sm:px-10 py-10">
-          <h2 className="text-2xl font-semibold text-blue-400 mb-6 text-center">API Settings</h2>
+        <div className="rounded-2xl bg-white backdrop-blur border border-gray-300 shadow-xl px-6 sm:px-10 py-10">
+          <h2 className="text-2xl font-semibold text-blue-600 mb-6 text-center">API Settings</h2>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <div className="flex w-full sm:max-w-xl">
-              <span className="inline-flex items-center px-4 bg-neutral-800 border border-neutral-700 rounded-l-lg">
+              <span className="inline-flex items-center px-4 bg-gray-100 border border-gray-300 rounded-l-lg">
                 <svg
-                  className="w-4 h-4 text-gray-400"
+                  className="w-4 h-4 text-gray-500"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={1.5}
@@ -98,7 +98,7 @@ export default function SettingsPage() {
                 value={apiLink}
                 onChange={(e) => setApiLink(e.target.value)}
                 placeholder="https://example.ngrok.io"
-                className="flex-1 px-4 py-2 bg-neutral-800 border border-l-0 border-neutral-700 text-sm text-white rounded-r-lg outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-1 px-4 py-2 bg-gray-100 border border-l-0 border-gray-300 text-sm text-gray-800 rounded-r-lg outline-none focus:ring-2 focus:ring-blue-600"
               />
             </div>
 
@@ -112,12 +112,12 @@ export default function SettingsPage() {
 
           {savedApi && (
             <div className="mt-6 text-center">
-              <p className="text-sm text-gray-400">Saved API Link:</p>
+              <p className="text-sm text-gray-500">Saved API Link:</p>
               <a
                 href={savedApi}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 underline break-words"
+                className="text-blue-600 underline break-words"
               >
                 {savedApi}
               </a>

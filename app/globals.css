@@ -1,8 +1,14 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #3b82f6;
+  --secondary: #f3f4f6;
+  --border: #e5e7eb;
+  --accent: #6366f1; /* Define accent color */
+  --card: #ffffff; /* Define card background */
+  --muted-foreground: #a0a0a0; /* Define muted foreground color */
 }
 
 @theme inline {
@@ -16,6 +22,12 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #60a5fa;
+    --secondary: #1f2937;
+    --border: #374151;
+    --accent: #a855f7; /* Dark mode accent color */
+    --card: #1a1a2e; /* Dark mode card background */
+    --muted-foreground: #7f7f7f; /* Dark mode muted foreground color */
   }
 }
 
@@ -28,4 +40,60 @@ body {
 .container {
   width: 100%;
   max-width: none !important;
+}
+
+/* Custom gradients and colors for the Hero section */
+.bg-gradient-hero {
+  background: linear-gradient(to bottom, var(--background) 0%, #1a1a2e 100%);
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(to right, var(--primary), var(--accent));
+}
+
+.bg-accent {
+  background-color: var(--accent);
+}
+
+.bg-accent\/10 {
+  background-color: rgba(var(--accent-rgb), 0.1);
+}
+
+.border-accent\/20 {
+  border-color: rgba(var(--accent-rgb), 0.2);
+}
+
+.bg-card {
+  background-color: var(--card);
+}
+
+.text-muted-foreground {
+  color: var(--muted-foreground);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-foreground {
+  color: var(--foreground);
+}
+
+.bg-border {
+  background-color: var(--border);
+}
+
+.bg-gradient-accent {
+  background: linear-gradient(to right, var(--accent), var(--primary));
+}
+
+/* Define RGB values for accent to use with opacity */
+:root {
+  --accent-rgb: 99, 102, 241; /* Default accent RGB */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent-rgb: 168, 85, 247; /* Dark mode accent RGB */
+  }
 }

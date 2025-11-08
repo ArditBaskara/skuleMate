@@ -21,16 +21,13 @@ export default function Page() {
   const [result, setResult] = useState<any>(null);
 
   return (
-    <div className='min-h-screen pt-16 pb-6 bg-neutral-950 px-6 sm:px-10 text-gray-200 relative'>
-      <div className="absolute top-10 right-310 w-81 h-81 bg-blue-800/20 blur-[120px] rounded-full z-0" />
-      <DescribeYourself
-        formData={formData}
-        isCvUpload={isCvUpload}
-        onFormSubmit={handleFormSubmit}
-        setIsCvUpload={setIsCvUpload}
-        result={result}
-        setResult={setResult}
-      />
-    </div>
+    <DescribeYourself
+      formData={formData}
+      isCvUpload={isCvUpload}
+      onFormSubmit={handleFormSubmit}
+      setIsCvUpload={setIsCvUpload}
+      result={result}
+      setResult={setResult}
+    />
   );
 }
