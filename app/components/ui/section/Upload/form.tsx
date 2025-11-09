@@ -229,7 +229,7 @@ const DescribeYourself = ({
             </CardContent>
           </Card>
 
-          {/* Info Cards */}
+          {/* Info Cards
           <div className="grid md:grid-cols-3 gap-4 mt-8">
             <Card className="text-center bg-white border-gray-300">
               <CardContent className="p-6">
@@ -251,8 +251,8 @@ const DescribeYourself = ({
                 <h4 className="font-semibold mb-1 text-gray-800">Accurate</h4>
                 <p className="text-sm text-gray-500">Precise scholarship matching</p>
               </CardContent>
-            </Card>
-          </div>
+            </Card> */}
+          {/* </div> */}
 
           {result?.length > 0 && (
             <div className="mt-12">
@@ -291,8 +291,8 @@ const DescribeYourself = ({
             </div>
           )}
         </div>
-      </main>
-    </div>
+      </main >
+    </div >
   );
 };
 
