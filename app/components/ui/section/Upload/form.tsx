@@ -6,6 +6,7 @@ import { Button } from '../../button';
 import { Card, CardContent, CardHeader, CardTitle } from '../../card';
 import { Input } from '../../input';
 import Link from 'next/link';
+import { getApiLink } from '../../../../firebase-config';
 
 interface DescribeYourselfProps {
   formData: {
@@ -55,7 +56,9 @@ const DescribeYourself = ({
     try {
       trigger = 1;
       let data;
-      const apiLink = sessionStorage.getItem("apiLink");
+      
+      // Gunakan fungsi getApiLink untuk mendapatkan API link dari Firestore atau sessionStorage
+      const apiLink = await getApiLink();
 
       if (!apiLink) {
         alert("API link belum disetting. Silakan pergi ke halaman setting untuk menyetting.");
@@ -136,22 +139,7 @@ const DescribeYourself = ({
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Full Name
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="e.g., Yanto Yanti"
-                    className="w-full border-gray-300 bg-white text-gray-800 placeholder:text-gray-500"
-                  />
-                </div>
-
+                
                 {isCvUpload ? (
                   <div>
                     <label htmlFor="cv" className="block text-sm font-medium text-gray-700 mb-2">
@@ -192,7 +180,7 @@ const DescribeYourself = ({
                       value={formData.description}
                       onChange={handleChange}
                       placeholder="Example: I graduated with a bachelor's in Computer Science, passionate about AI and social research..."
-                      className="w-full text-gray-950 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-background placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none"
+                      className="w-full text-gray-950 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-background placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 resize-none"
                     />
                   </div>
                 )}
