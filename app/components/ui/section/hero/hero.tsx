@@ -4,7 +4,8 @@ import React from 'react';
 import { Button } from '../../button';
 import { Upload, FileText } from "lucide-react";
 import Image from 'next/image';
-import { motion } from 'framer-motion'; // Import framer-motion
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -32,14 +33,19 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" className="group bg-blue-600 text-white hover:bg-blue-700 transition-colors">
-                <Upload className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                Upload Your CV
-              </Button>
-              <Button variant="outline" size="lg" className="group border-blue-600 text-blue-600 hover:bg-blue-100 transition-colors">
-                <FileText className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                Describe Yourself
-              </Button>
+              <Link href="/pages/upload">
+                <Button variant="hero" size="lg" className="group bg-blue-600 text-white hover:bg-blue-700 transition-colors">
+                  <Upload className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                  Upload Your CV
+                </Button>
+              </Link>
+
+              <Link href="/pages/upload">
+                <Button variant="outline" size="lg" className="group border-blue-600 text-blue-600 hover:bg-blue-100 transition-colors">
+                  <FileText className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                  Describe Yourself
+                </Button>
+              </Link>
             </div>
 
             <div className="flex items-center gap-8 pt-4">
